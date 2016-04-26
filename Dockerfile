@@ -1,7 +1,53 @@
-FROM ubuntu:15.10
+FROM python:3
 
 MAINTAINER Julien Kermes
 
-RUN apt-get update && apt-get install -y git wget python2.7 r-base r-base-dev \
-	&& cd home && wget https://bootstrap.pypa.io/get-pip.py \
-	&& python2.7 get-pip.py && pip install pytest && rm get-pip.py
+RUN apt-get update
+
+RUN apt-get upgrade -y
+
+RUN apt-get install -y git
+
+RUN apt-get install -y python3-dev
+
+RUN apt-get install -y gcc
+
+RUN apt-get install -y r-base
+
+RUN apt-get install -y r-base-dev
+
+RUN apt-get install -y tree
+
+RUN apt-get install -y texlive-latex-recommended
+
+RUN apt-get install -y texlive-latex-extra
+
+RUN apt-get install -y texlive-fonts-recommended
+
+RUN pip install --upgrade pip
+
+RUN pip install pytest-cov
+
+RUN pip install requests
+
+RUN pip install pyprind
+
+RUN pip install psutil
+
+RUN pip install pyyaml
+
+RUN pip install sphinx
+
+RUN pip install sphinx_rtd_theme
+
+RUN pip install cython
+
+WORKDIR /home
+
+# pyproj needs to be installed manually
+RUN git clone https://github.com/jswhit/pyproj \
+	&& cd pyproj \
+	&& python3 setup.py build \
+	&& python3 setup.py install \
+	&& cd .. \
+	&& rm -rf pyproj
