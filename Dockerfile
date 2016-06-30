@@ -42,6 +42,8 @@ RUN pip install sphinx_rtd_theme
 
 RUN pip install cython
 
+RUN pip install Pillow
+
 WORKDIR /home
 
 # pyproj needs to be installed manually
