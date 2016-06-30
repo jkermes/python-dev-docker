@@ -20,3 +20,4 @@ Python  packages:
 + sphinx
 + sphinx_rtd_theme
 + pyproj
++ pillow
